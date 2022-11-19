@@ -1,16 +1,26 @@
-import { Box, Center, Container, Image } from '@chakra-ui/react'
+import {Box, Center, Container, Image} from '@chakra-ui/react'
 import React from 'react'
-import { motion } from 'framer-motion'
+import {motion} from 'framer-motion'
+import {useDatabaseSetMutation} from "@react-query-firebase/database";
+import {push, ref} from "firebase/database";
+import {database} from "../firebase/index"
 
 export default function HomePage() {
+  const dbRef = ref(database, `messages`);
+  const newMessageRef = push(dbRef)
+  const mutation = useDatabaseSetMutation(newMessageRef);
+
   return (
     <Container>
       <Center h={'100vh'}>
         <Box
-          _focus={{ boxShadow: 'none' }}
+          onClick={() => {
+            mutation.mutate({name: "retca"})
+          }}
+          _focus={{boxShadow: 'none'}}
           as={motion.button}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          whileHover={{scale: 1.1}}
+          whileTap={{scale: 0.9}}
           cursor={'pointer'}
         >
           <Image
