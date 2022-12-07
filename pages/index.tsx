@@ -1,9 +1,10 @@
-import {Box, Center, Container, Heading, Image, SimpleGrid, VStack} from '@chakra-ui/react'
+import {Box, Button, Center, Container, Heading, Icon, Image, SimpleGrid, VStack} from '@chakra-ui/react'
 import React from 'react'
 import {motion} from 'framer-motion'
 import {useDatabaseSetMutation} from "@react-query-firebase/database";
 import {push, ref} from "firebase/database";
 import {database} from "../firebase/index"
+import {FaTwitter} from 'react-icons/fa';
 
 export default function HomePage() {
   const dbHeartRef = ref(database, `hearts`);
@@ -16,6 +17,9 @@ export default function HomePage() {
 
   const stamps = ["最高", "ちら", "エモい", "ありまと", "love",]
 
+  const shareText = `\n#中村さんそクラスタと繋がりたい`;
+  const twitterLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+
   return (
     <Container
       sx={{
@@ -26,9 +30,15 @@ export default function HomePage() {
       }}>
       <Center h={"full"}>
         <VStack spacing={8}>
-          <Heading size={"lg"}>
-            #中村さんと繋がりたい
-          </Heading>
+          <VStack spacing={4}>
+            <Heading size={"md"}>
+              #中村さんクラスタと繋がりたい
+            </Heading>
+            <Button
+              href={twitterLink}
+              target={"_blank"}
+              size={"sm"} as={"a"} colorScheme={"twitter"} leftIcon={<Icon as={FaTwitter}/>}>Tweet</Button>
+          </VStack>
           <SimpleGrid columns={2} m={2} spacing={4}>
             {
               stamps.map((stampName, index) => {
