@@ -46,7 +46,7 @@ export default function HomePage() {
         <VStack spacing={8}>
           <VStack spacing={4}>
             <Heading size={'md'} fontFamily={'DotGothic16'}>
-              #中村さんクラスタと繋がりたい
+              #中村さんそクラスタと繋がりたい
             </Heading>
             <Button
               href={twitterLink}

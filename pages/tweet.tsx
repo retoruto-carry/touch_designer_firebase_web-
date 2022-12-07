@@ -33,7 +33,7 @@ export default function TweetPage() {
         '-4px -4px 0 #000;'
       div_text.style.left = document.documentElement.clientWidth + 'px'
       const random = Math.round(
-        Math.random() * document.documentElement.clientHeight
+        Math.random() * document.documentElement.clientHeight - 100
       )
       div_text.style.top = random + 'px'
       div_text.appendChild(document.createTextNode(text))
@@ -42,7 +42,7 @@ export default function TweetPage() {
         duration: 30,
         x:
           -1 *
-          (document.documentElement.clientWidth + div_text.clientWidth + 5000),
+          (document.documentElement.clientWidth + div_text.clientWidth + 2000),
         ease: 'linear',
       })
       div_text?.parentNode?.removeChild(div_text)
