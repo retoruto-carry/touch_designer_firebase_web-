@@ -1,4 +1,4 @@
-import {Box, Center, Container, Image} from '@chakra-ui/react'
+import {Box, Center, Container, Heading, Image, SimpleGrid, VStack} from '@chakra-ui/react'
 import React from 'react'
 import {motion} from 'framer-motion'
 import {useDatabaseSetMutation} from "@react-query-firebase/database";
@@ -14,43 +14,65 @@ export default function HomePage() {
   const newStampRef = push(dbStampRef)
   const stampMutation = useDatabaseSetMutation(newStampRef);
 
+  const stamps = ["最高", "ちら", "エモい", "ありまと", "love",]
+
   return (
-    <Container>
-      <Center h={'100vh'}>
-        <Box
-          onClick={() => {
-            heartMutation.mutate({value: 1})
-          }}
-          _focus={{boxShadow: 'none'}}
-          as={motion.button}
-          whileHover={{scale: 1.1}}
-          whileTap={{scale: 0.9}}
-          cursor={'pointer'}
-        >
-          <Image
-            boxSize="150px"
-            objectFit="cover"
-            src="/images/heart.png"
-            alt={'send heat'}
-          />
-        </Box>
-        <Box
-          onClick={() => {
-            stampMutation.mutate({value: 1})
-          }}
-          _focus={{boxShadow: 'none'}}
-          as={motion.button}
-          whileHover={{scale: 1.1}}
-          whileTap={{scale: 0.9}}
-          cursor={'pointer'}
-        >
-          <Image
-            boxSize="150px"
-            objectFit="cover"
-            src="https://pbs.twimg.com/profile_images/1362720299674861570/fDwmsAK0_400x400.png"
-            alt={'send stamp 1'}
-          />
-        </Box>
+    <Container
+      sx={{
+        height: "100vh",
+        "&": {
+          height: "100svh"
+        }
+      }}>
+      <Center h={"full"}>
+        <VStack spacing={8}>
+          <Heading size={"lg"}>
+            #中村さんと繋がりたい
+          </Heading>
+          <SimpleGrid columns={2} m={2} spacing={4}>
+            {
+              stamps.map((stampName, index) => {
+                return (
+                  <Box
+                    key={stampName}
+                    onClick={() => {
+                      stampMutation.mutate({value: index + 1})
+                    }}
+                    _focus={{boxShadow: 'none'}}
+                    as={motion.button}
+                    whileHover={{scale: 1.1}}
+                    whileTap={{scale: 0.9}}
+                    cursor={'pointer'}
+                  >
+                    <Image
+                      boxSize="150px"
+                      objectFit="cover"
+                      src={`/images/stamps/${stampName}.png`}
+                      alt={`${stampName}`}
+                    />
+                  </Box>
+                )
+              })
+            }
+            <Box
+              onClick={() => {
+                heartMutation.mutate({value: 1})
+              }}
+              _focus={{boxShadow: 'none'}}
+              as={motion.button}
+              whileHover={{scale: 1.1}}
+              whileTap={{scale: 0.9}}
+              cursor={'pointer'}
+            >
+              <Image
+                boxSize="150px"
+                objectFit="cover"
+                src="/images/heart.png"
+                alt={'send heat'}
+              />
+            </Box>
+          </SimpleGrid>
+        </VStack>
       </Center>
     </Container>
   )
