@@ -4,17 +4,19 @@ import {
   Center,
   Container,
   Heading,
+  Text,
   Icon,
   Image,
   SimpleGrid,
   VStack,
+  HStack,
 } from '@chakra-ui/react'
 import React from 'react'
 import {motion} from 'framer-motion'
 import {useDatabaseSetMutation} from '@react-query-firebase/database'
 import {push, ref} from 'firebase/database'
 import {database} from '../firebase/index'
-import {FaTwitter} from 'react-icons/fa'
+import {FaInfoCircle, FaTwitter} from 'react-icons/fa'
 
 export default function HomePage() {
   const dbHeartRef = ref(database, `hearts`)
@@ -25,9 +27,9 @@ export default function HomePage() {
   const newStampRef = push(dbStampRef)
   const stampMutation = useDatabaseSetMutation(newStampRef)
 
-  const stamps = ['最高', 'ちら', 'エモい', 'ありまと', 'love']
+  const stamps = ['最高', '天才', 'DJ', 'VJ', '乾杯', ]
 
-  const shareText = `\n#中村さんそクラスタと繋がりたい`
+  const shareText = `\n#Future_Arise`
   const twitterLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     shareText
   )}`
@@ -46,7 +48,7 @@ export default function HomePage() {
         <VStack spacing={8}>
           <VStack spacing={4}>
             <Heading size={'md'} fontFamily={'DotGothic16'}>
-              #中村さんそクラスタと繋がりたい
+              # Future_Arise
             </Heading>
             <Button
               href={twitterLink}
@@ -75,8 +77,8 @@ export default function HomePage() {
                 >
                   <Image
                     boxSize="150px"
-                    objectFit="cover"
-                    src={`/images/stamps/${stampName}.png`}
+                    objectFit="contain"
+                    src={`/images/stamps/future-arise/${stampName}.png`}
                     alt={`${stampName}`}
                   />
                 </Box>
@@ -100,6 +102,12 @@ export default function HomePage() {
               />
             </Box>
           </SimpleGrid>
+          <HStack spacing={4} opacity={0.7}>
+            <Icon as={FaInfoCircle}/>
+            <Text fontSize={'sm'} fontFamily={'DotGothic16'}>
+              スタンプの送信がうまくいかない場合は、ページを再読み込みしてみてください
+            </Text>
+          </HStack>
         </VStack>
       </Center>
     </Container>
