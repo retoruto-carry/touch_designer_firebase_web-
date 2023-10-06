@@ -111,7 +111,7 @@ export default function HomePage() {
                   <Box
                     key={stampName}
                     onClick={() => {
-                      stampMutation.mutate({value: index + 1})
+                      stampMutation.mutate({value: index + 10})
                     }}
                     _focus={{boxShadow: 'none'}}
                     as={motion.button}
