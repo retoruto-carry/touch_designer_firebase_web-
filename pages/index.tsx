@@ -10,7 +10,6 @@ import {
   SimpleGrid,
   VStack,
   HStack,
-  Flex,
 } from '@chakra-ui/react'
 import React from 'react'
 import {motion} from 'framer-motion'
