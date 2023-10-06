@@ -10,6 +10,7 @@ import {
   SimpleGrid,
   VStack,
   HStack,
+  Flex,
 } from '@chakra-ui/react'
 import React from 'react'
 import {motion} from 'framer-motion'
@@ -27,9 +28,10 @@ export default function HomePage() {
   const newStampRef = push(dbStampRef)
   const stampMutation = useDatabaseSetMutation(newStampRef)
 
-  const stamps = ['最高', '天才', 'DJ', 'VJ', '乾杯', ]
+  const stamps = ['最高', 'ちら', 'エモい', 'ありまと', 'love']
+  const textStamps = ['最高', '天才', 'DJ', 'VJ', '乾杯', ]
 
-  const shareText = `\n#Future_Arise`
+  const shareText = `\n#中村さんそクラスタと繋がりたい`
   const twitterLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     shareText
   )}`
@@ -45,10 +47,10 @@ export default function HomePage() {
       }}
     >
       <Center h={'full'}>
-        <VStack spacing={8}>
+        <VStack spacing={5}>
           <VStack spacing={4}>
             <Heading size={'md'} fontFamily={'DotGothic16'}>
-              # Future_Arise
+              #中村さんそクラスタと繋がりたい
             </Heading>
             <Button
               href={twitterLink}
@@ -61,47 +63,73 @@ export default function HomePage() {
               Tweet
             </Button>
           </VStack>
-          <SimpleGrid columns={2} m={2} spacing={4}>
-            {stamps.map((stampName, index) => {
-              return (
-                <Box
-                  key={stampName}
-                  onClick={() => {
-                    stampMutation.mutate({value: index + 1})
-                  }}
-                  _focus={{boxShadow: 'none'}}
-                  as={motion.button}
-                  whileHover={{scale: 1.1}}
-                  whileTap={{scale: 0.9}}
-                  cursor={'pointer'}
-                >
-                  <Image
-                    boxSize="150px"
-                    objectFit="contain"
-                    src={`/images/stamps/future-arise/${stampName}.png`}
-                    alt={`${stampName}`}
-                  />
-                </Box>
-              )
-            })}
-            <Box
-              onClick={() => {
-                heartMutation.mutate({value: 1})
-              }}
-              _focus={{boxShadow: 'none'}}
-              as={motion.button}
-              whileHover={{scale: 1.1}}
-              whileTap={{scale: 0.9}}
-              cursor={'pointer'}
-            >
-              <Image
-                boxSize="150px"
-                objectFit="cover"
-                src="/images/heart.png"
-                alt={'send heat'}
-              />
-            </Box>
-          </SimpleGrid>
+          <VStack>
+            <SimpleGrid columns={2} m={2} spacing={4}>
+              {stamps.map((stampName, index) => {
+                return (
+                  <Box
+                    key={stampName}
+                    onClick={() => {
+                      stampMutation.mutate({value: index + 1})
+                    }}
+                    _focus={{boxShadow: 'none'}}
+                    as={motion.button}
+                    whileHover={{scale: 1.1}}
+                    whileTap={{scale: 0.9}}
+                    cursor={'pointer'}
+                  >
+                    <Image
+                      boxSize="150px"
+                      objectFit="contain"
+                      src={`/images/stamps/${stampName}.png`}
+                      alt={`${stampName}`}
+                    />
+                  </Box>
+                )
+              })}
+              <Box
+                onClick={() => {
+                  heartMutation.mutate({value: 1})
+                }}
+                _focus={{boxShadow: 'none'}}
+                as={motion.button}
+                whileHover={{scale: 1.1}}
+                whileTap={{scale: 0.9}}
+                cursor={'pointer'}
+              >
+                <Image
+                  boxSize="150px"
+                  objectFit="contain"
+                  src="/images/heart.png"
+                  alt={'send heat'}
+                />
+              </Box>
+            </SimpleGrid>
+            <Flex justifyContent={"space-between"}>
+              {textStamps.map((stampName, index) => {
+                return (
+                  <Box
+                    key={stampName}
+                    onClick={() => {
+                      stampMutation.mutate({value: index + 1})
+                    }}
+                    _focus={{boxShadow: 'none'}}
+                    as={motion.button}
+                    whileHover={{scale: 1.1}}
+                    whileTap={{scale: 0.9}}
+                    cursor={'pointer'}
+                  >
+                    <Image
+                      boxSize="80px"
+                      objectFit="contain"
+                      src={`/images/stamps/future-arise/${stampName}.png`}
+                      alt={`${stampName}`}
+                    />
+                  </Box>
+                )
+              })}
+            </Flex>
+          </VStack>
           <HStack spacing={4} opacity={0.7}>
             <Icon as={FaInfoCircle}/>
             <Text fontSize={'sm'} fontFamily={'DotGothic16'}>
