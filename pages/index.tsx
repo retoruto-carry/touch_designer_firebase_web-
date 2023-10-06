@@ -105,30 +105,6 @@ export default function HomePage() {
                 />
               </Box>
             </SimpleGrid>
-            <Flex justifyContent={"space-between"}>
-              {textStamps.map((stampName, index) => {
-                return (
-                  <Box
-                    key={stampName}
-                    onClick={() => {
-                      stampMutation.mutate({value: index + 11})
-                    }}
-                    _focus={{boxShadow: 'none'}}
-                    as={motion.button}
-                    whileHover={{scale: 1.1}}
-                    whileTap={{scale: 0.9}}
-                    cursor={'pointer'}
-                  >
-                    <Image
-                      boxSize="80px"
-                      objectFit="contain"
-                      src={`/images/stamps/future-arise/${stampName}.png`}
-                      alt={`${stampName}`}
-                    />
-                  </Box>
-                )
-              })}
-            </Flex>
           </VStack>
           <HStack spacing={4} opacity={0.7}>
             <Icon as={FaInfoCircle}/>
