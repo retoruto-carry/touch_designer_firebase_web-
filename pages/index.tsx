@@ -50,7 +50,7 @@ export default function HomePage() {
           height: '100svh',
         },
         position: 'relative',
-        backgroundImage: 'url("/images/background3.png")',
+        backgroundImage: 'url("/images/background3.jpg")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
