@@ -12,11 +12,11 @@ import {
   HStack,
 } from '@chakra-ui/react'
 import React from 'react'
-import {motion} from 'framer-motion'
-import {useDatabaseSetMutation} from '@react-query-firebase/database'
-import {push, ref} from 'firebase/database'
-import {database} from '../firebase/index'
-import {FaInfoCircle, FaTwitter} from 'react-icons/fa'
+import { motion } from 'framer-motion'
+import { useDatabaseSetMutation } from '@react-query-firebase/database'
+import { push, ref } from 'firebase/database'
+import { database } from '../firebase/index'
+import { FaInfoCircle, FaTwitter } from 'react-icons/fa'
 
 export default function HomePage() {
   const dbHeartRef = ref(database, `hearts`)
@@ -28,9 +28,9 @@ export default function HomePage() {
   const stampMutation = useDatabaseSetMutation(newStampRef)
 
   const stamps = ['最高', 'ちら', 'エモい', 'ありまと', 'love']
-  const textStamps = ['最高', '天才', 'DJ', 'VJ', '乾杯', ]
+  const textStamps = ['最高', '天才', 'DJ', 'VJ', '乾杯',]
 
-  const shareText = `\n#中村さんそクラスタと繋がりたい`
+  const shareText = `\n39noMix vol․11 VR #39mix`
   const twitterLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     shareText
   )}`
@@ -49,7 +49,7 @@ export default function HomePage() {
         <VStack spacing={5}>
           <VStack spacing={4}>
             <Heading size={'md'} fontFamily={'DotGothic16'}>
-              #中村さんそクラスタと繋がりたい
+              39noMix vol․11 VR #39mix
             </Heading>
             <Button
               href={twitterLink}
@@ -57,7 +57,7 @@ export default function HomePage() {
               size={'sm'}
               as={'a'}
               colorScheme={'twitter'}
-              leftIcon={<Icon as={FaTwitter}/>}
+              leftIcon={<Icon as={FaTwitter} />}
             >
               Tweet
             </Button>
@@ -69,12 +69,12 @@ export default function HomePage() {
                   <Box
                     key={stampName}
                     onClick={() => {
-                      stampMutation.mutate({value: index + 1})
+                      stampMutation.mutate({ value: index + 1 })
                     }}
-                    _focus={{boxShadow: 'none'}}
+                    _focus={{ boxShadow: 'none' }}
                     as={motion.button}
-                    whileHover={{scale: 1.1}}
-                    whileTap={{scale: 0.9}}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                     cursor={'pointer'}
                   >
                     <Image
@@ -88,12 +88,12 @@ export default function HomePage() {
               })}
               <Box
                 onClick={() => {
-                  heartMutation.mutate({value: 1})
+                  heartMutation.mutate({ value: 1 })
                 }}
-                _focus={{boxShadow: 'none'}}
+                _focus={{ boxShadow: 'none' }}
                 as={motion.button}
-                whileHover={{scale: 1.1}}
-                whileTap={{scale: 0.9}}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
                 cursor={'pointer'}
               >
                 <Image
@@ -106,7 +106,7 @@ export default function HomePage() {
             </SimpleGrid>
           </VStack>
           <HStack spacing={4} opacity={0.7}>
-            <Icon as={FaInfoCircle}/>
+            <Icon as={FaInfoCircle} />
             <Text fontSize={'sm'} fontFamily={'DotGothic16'}>
               スタンプの送信がうまくいかない場合は、ページを再読み込みしてみてください
             </Text>
