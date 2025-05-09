@@ -39,7 +39,7 @@ export default function HomePage() {
 
   const url = typeof window !== 'undefined' ? window.location.origin : ''
 
-  const shareText = `\n39noMix vol․11 VR #39mix @marifuVrc_\n${url}`
+  const shareText = `\n39noMix vol․11 VR #39mix @marifuVrc\n${url}`
   const twitterLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     shareText
   )}`
