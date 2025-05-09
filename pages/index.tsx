@@ -30,7 +30,7 @@ export default function HomePage() {
   const stamps = ['最高', 'ちら', 'エモい', 'ありまと', 'love']
   const textStamps = ['最高', '天才', 'DJ', 'VJ', '乾杯',]
 
-  const shareText = `\n39noMix vol․11 VR #39mix`
+  const shareText = `\n39noMix vol․11 VR #39mix @marifuVrc`
   const twitterLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     shareText
   )}`
