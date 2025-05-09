@@ -17,7 +17,6 @@ import { useDatabaseSetMutation } from '@react-query-firebase/database'
 import { push, ref } from 'firebase/database'
 import { database } from '../firebase/index'
 import { FaInfoCircle, FaTwitter } from 'react-icons/fa'
-import { useRouter } from 'next/router'
 
 export default function HomePage() {
   const dbHeartRef = ref(database, `hearts`)
@@ -28,7 +27,15 @@ export default function HomePage() {
   const newStampRef = push(dbStampRef)
   const stampMutation = useDatabaseSetMutation(newStampRef)
 
-  const stamps = ['最高', 'ちら', 'エモい', 'ありまと', 'love']
+  const stamps = ['最高', '乾杯', '天才', 'DJ', 'VJ']
+
+  const stampValueMaps = [
+    { value: 3, text: '最高' },
+    { value: 5, text: '乾杯' },
+    { value: 1, text: 'DJ' },
+    { value: 4, text: '天才' },
+    { value: 2, text: 'VJ' },
+  ]
 
   const url = typeof window !== 'undefined' ? window.location.origin : ''
 
@@ -66,12 +73,12 @@ export default function HomePage() {
           </VStack>
           <VStack>
             <SimpleGrid columns={2} m={2} spacing={4}>
-              {stamps.map((stampName, index) => {
+              {stampValueMaps.map((stamp) => {
                 return (
                   <Box
-                    key={stampName}
+                    key={stamp.value}
                     onClick={() => {
-                      stampMutation.mutate({ value: index + 1 })
+                      stampMutation.mutate({ value: stamp.value })
                     }}
                     _focus={{ boxShadow: 'none' }}
                     as={motion.button}
@@ -82,8 +89,8 @@ export default function HomePage() {
                     <Image
                       boxSize="150px"
                       objectFit="contain"
-                      src={`/images/stamps/${stampName}.png`}
-                      alt={`${stampName}`}
+                      src={`/images/stamps/${stamp.text}.png`}
+                      alt={`${stamp.text}`}
                     />
                   </Box>
                 )
