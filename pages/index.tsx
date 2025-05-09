@@ -27,8 +27,6 @@ export default function HomePage() {
   const newStampRef = push(dbStampRef)
   const stampMutation = useDatabaseSetMutation(newStampRef)
 
-  const stamps = ['最高', '乾杯', '天才', 'DJ', 'VJ']
-
   const stampValueMaps = [
     { value: 3, text: '最高' },
     { value: 5, text: '乾杯' },
@@ -52,7 +50,7 @@ export default function HomePage() {
           height: '100svh',
         },
         position: 'relative',
-        backgroundImage: 'url("/images/background2.png")',
+        backgroundImage: 'url("/images/background3.png")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
