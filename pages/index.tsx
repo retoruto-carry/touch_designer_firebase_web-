@@ -17,6 +17,7 @@ import { useDatabaseSetMutation } from '@react-query-firebase/database'
 import { push, ref } from 'firebase/database'
 import { database } from '../firebase/index'
 import { FaInfoCircle, FaTwitter } from 'react-icons/fa'
+import { useRouter } from 'next/router'
 
 export default function HomePage() {
   const dbHeartRef = ref(database, `hearts`)
@@ -28,9 +29,10 @@ export default function HomePage() {
   const stampMutation = useDatabaseSetMutation(newStampRef)
 
   const stamps = ['最高', 'ちら', 'エモい', 'ありまと', 'love']
-  const textStamps = ['最高', '天才', 'DJ', 'VJ', '乾杯',]
 
-  const shareText = `\n39noMix vol․11 VR #39mix @marifuVrc`
+  const url = typeof window !== 'undefined' ? window.location.origin : ''
+
+  const shareText = `\n39noMix vol․11 VR #39mix @marifuVrc_\n${url}`
   const twitterLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
     shareText
   )}`
